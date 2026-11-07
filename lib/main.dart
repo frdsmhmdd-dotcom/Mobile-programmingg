@@ -22,14 +22,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// ============================================================
-// HALAMAN 1: BERANDA
-// ============================================================
 class BerandaPage extends StatelessWidget {
   const BerandaPage({super.key});
 
   Future<void> _bukaWhatsApp() async {
-    // Format nomor WA: ganti 0 di depan dengan 62
     final Uri url = Uri.parse('https://wa.me/6282328559628');
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
@@ -48,15 +44,12 @@ class BerandaPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Icon Restoran
             const Icon(
               Icons.restaurant,
               size: 100,
               color: Colors.orange,
             ),
             const SizedBox(height: 24),
-
-            // Judul Warung
             const Text(
               'Warung Makan Pepes Mendoan',
               style: TextStyle(
@@ -66,8 +59,6 @@ class BerandaPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-
-            // Deskripsi
             const Text(
               'Nikmati aneka masakan tradisional lezat',
               style: TextStyle(
@@ -77,11 +68,8 @@ class BerandaPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
-
-            // Tombol ke Halaman Katalog
             ElevatedButton.icon(
               onPressed: () {
-                // Navigasi ke Halaman Katalog Makanan
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -106,10 +94,7 @@ class BerandaPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 32),
-
-            // Teks hubungi
             const Text(
               'Jika berminat, hubungi kami:',
               style: TextStyle(
@@ -118,8 +103,6 @@ class BerandaPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-
-            // Tombol WhatsApp
             ElevatedButton.icon(
               onPressed: _bukaWhatsApp,
               icon: const Icon(Icons.chat),
@@ -128,7 +111,7 @@ class BerandaPage extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF25D366), // Warna hijau WA
+                backgroundColor: const Color(0xFF25D366),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 28,
@@ -146,9 +129,6 @@ class BerandaPage extends StatelessWidget {
   }
 }
 
-// ============================================================
-// MODEL DATA MAKANAN
-// ============================================================
 class Makanan {
   final String nama;
   final String kategori;
@@ -165,7 +145,6 @@ class Makanan {
   });
 }
 
-// Data dummy daftar makanan
 final List<Makanan> daftarMakanan = [
   const Makanan(
     nama: 'Ayam Pop',
@@ -249,9 +228,6 @@ final List<Makanan> daftarMakanan = [
   ),
 ];
 
-// ============================================================
-// HALAMAN 2: KATALOG MAKANAN
-// ============================================================
 class KatalogPage extends StatelessWidget {
   const KatalogPage({super.key});
 
@@ -283,7 +259,6 @@ class KatalogPage extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: Row(
               children: [
-                // Gambar Makanan
                 Image.asset(
                   makanan.gambar,
                   width: 110,
@@ -297,15 +272,12 @@ class KatalogPage extends StatelessWidget {
                         color: Colors.orange, size: 40),
                   ),
                 ),
-
-                // Info Makanan
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Nama
                         Text(
                           makanan.nama,
                           style: const TextStyle(
@@ -314,8 +286,6 @@ class KatalogPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 4),
-
-                        // Kategori badge
                         Container(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 2),
@@ -333,8 +303,6 @@ class KatalogPage extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 6),
-
-                        // Deskripsi singkat
                         Text(
                           makanan.deskripsi,
                           style: const TextStyle(
@@ -345,8 +313,6 @@ class KatalogPage extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 8),
-
-                        // Harga
                         Text(
                           formatRupiah(makanan.harga),
                           style: const TextStyle(
@@ -367,4 +333,3 @@ class KatalogPage extends StatelessWidget {
     );
   }
 }
-
