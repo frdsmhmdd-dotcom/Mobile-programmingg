@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Warung Kuliner',
+      title: 'Warung Makan Pepes Mendoan',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
@@ -27,11 +28,19 @@ class MyApp extends StatelessWidget {
 class BerandaPage extends StatelessWidget {
   const BerandaPage({super.key});
 
+  Future<void> _bukaWhatsApp() async {
+    // Format nomor WA: ganti 0 di depan dengan 62
+    final Uri url = Uri.parse('https://wa.me/6282328559628');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Warung Kuliner'),
+        title: const Text('Warung Makan Pepes Mendoan'),
         backgroundColor: Colors.orange,
         foregroundColor: Colors.white,
       ),
@@ -49,7 +58,7 @@ class BerandaPage extends StatelessWidget {
 
             // Judul Warung
             const Text(
-              'Warung Kuliner Nusantara',
+              'Warung Makan Pepes Mendoan',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -91,6 +100,39 @@ class BerandaPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,
                   vertical: 14,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 32),
+
+            // Teks hubungi
+            const Text(
+              'Jika berminat, hubungi kami:',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black54,
+              ),
+            ),
+            const SizedBox(height: 10),
+
+            // Tombol WhatsApp
+            ElevatedButton.icon(
+              onPressed: _bukaWhatsApp,
+              icon: const Icon(Icons.chat),
+              label: const Text(
+                'Hubungi via WhatsApp',
+                style: TextStyle(fontSize: 15),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF25D366), // Warna hijau WA
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 28,
+                  vertical: 13,
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -325,3 +367,4 @@ class KatalogPage extends StatelessWidget {
     );
   }
 }
+
