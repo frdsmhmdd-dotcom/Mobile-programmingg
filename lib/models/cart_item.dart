@@ -11,3 +11,4 @@ class CartItem {
 
   int get totalPrice => menu.price * quantity;
 }
+

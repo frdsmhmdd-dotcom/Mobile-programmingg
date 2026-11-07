@@ -15,3 +15,4 @@ class OrderHistory {
     this.status = 'Selesai',
   });
 }
+

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../services/app_state.dart';
-import '../widgets/ktm_dialog.dart';
 import 'beranda_page.dart';
 import 'menu_page.dart';
 import 'keranjang_page.dart';
@@ -20,13 +19,6 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       _currentIndex = index;
     });
-  }
-
-  void _showKtmDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => const KtmProfileDialog(),
-    );
   }
 
   String get _pageTitle {
@@ -75,15 +67,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
             backgroundColor: Colors.deepOrange,
             foregroundColor: Colors.white,
-            actions: [
-              // Tombol KTM Mahasiswa UPGRIS
-              IconButton(
-                icon: const Icon(Icons.badge_outlined),
-                tooltip: 'KTM Mahasiswa UPGRIS',
-                onPressed: _showKtmDialog,
-              ),
-              const SizedBox(width: 8),
-            ],
           ),
           body: IndexedStack(
             index: _currentIndex,
@@ -137,3 +120,4 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
+
