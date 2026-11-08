@@ -25,10 +25,12 @@ class MyApp extends StatelessWidget {
 class BerandaPage extends StatelessWidget {
   const BerandaPage({super.key});
 
-  Future<void> _bukaWhatsApp() async {
+  void _bukaWhatsApp() async {
     final Uri url = Uri.parse('https://wa.me/6282328559628');
-    if (await canLaunchUrl(url)) {
+    try {
       await launchUrl(url, mode: LaunchMode.externalApplication);
+    } catch (_) {
+      await launchUrl(url);
     }
   }
 
